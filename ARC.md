@@ -8,18 +8,18 @@
 
 - **Retain Count (Reference count)** represents the number of owners for a particular object.
 
-```swift
-class Person {
-  let name: String
-  init(name: String) {
-    self.name = name
+  ```swift
+  class Person {
+    let name: String
+    init(name: String) {
+      self.name = name
+    }
+    deinit { print("Person() deinit") }
   }
-  deinit { print("Person() deinit") }
-}
-let person1 = Person(name: "Swifts") // retain count: 1
-let person2 = person1 // retain count: 2
-let person3 = person1 // retain count: 3
-```
+  let person1 = Person(name: "Swifts") // retain count: 1
+  let person2 = person1 // retain count: 2
+  let person3 = person1 // retain count: 3
+  ```
 
 Swift has two parts for memory allocations and automatically allocates them in the *Heap* or *Stack*.
 
