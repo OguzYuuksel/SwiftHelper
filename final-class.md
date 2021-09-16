@@ -1,4 +1,4 @@
-### **final**
+### **final class**
 
 - `final` is a restriction on a class, method or property that indicates that the declaration cannot be overridden.
 - It helps increase in performance by reducing **Dynamic Dispatch**.
