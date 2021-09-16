@@ -1,4 +1,4 @@
-# lazy
+# lazy var
 
 `lazy` variables allow you to delay the initialization of stored properties.
 
