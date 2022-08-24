@@ -19,7 +19,12 @@ Composed views use primitive views in their body. Primitive views are the buildi
 
 
 #### Lazyness 
-`List` is one of the lazy views in SwiftUI
+`List` is one of the lazy views in SwiftUI.
+
+`List` needs to know the size of a composed view without evaluating it for lazyness, but can it know?
+Turns out, in many cases we can, just by knowing the type of the body of a composed view. For example, the size of a `TupleView<(Text, Text, Button)>` is always 3, no matter the particular instance. So a composed view where the body is a `TupleView<(Text, Text, Button)>` also always has size 3.
+
+But you can't always know the size of a view just by its type. A `_ConditionalView<EmptyView, Text>` can have sizes 0 or 1. If a composed view has a body of this type, and it is used in a lazy stack or a list, we still have to evaluate it to determine its size.
 
 ```
 import SwiftUI
