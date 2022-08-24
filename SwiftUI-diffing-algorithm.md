@@ -1,6 +1,6 @@
 
 #### Primitive Views
-Primitive views are not defined in terms of other views. (`Text`, `Button`, `Color`, `Shape`, `Image`, `List`, `VStack`, `HStack`)
+Primitive views are not defined in terms of other views.
 - **Unary views**: Views with a single displayable. (`Text`, `Button`, `Color`, `Shape`, `Image`)
 - **Structural views**: Views that take zero or more other views, and combines them into a view with some subset of their displayables. 
   (`ForEach`, `EmptyView`, and the views used by `ViewBuilder`, such as `TupleView` and `_ConditionalView`.
