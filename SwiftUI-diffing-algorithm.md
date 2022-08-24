@@ -18,6 +18,81 @@ Composed views use primitive views in their body. Primitive views are the buildi
 
 
 
+#### Lazyness 
+`List` is one of the lazy views in SwiftUI
+
+```
+import SwiftUI
+import PlaygroundSupport
+
+var unLazyViewCallCount = 0
+var lazyViewCallCount = 0
+let totalItemCount = 20
+
+struct ContentView: View {
+
+    var body: some View {
+        HStack {
+            LazyListExample()
+            UnLazyListExample()
+        }
+    }
+}
+
+struct LazyListExample: View {
+    var body: some View {
+        List(0...totalItemCount, id: \.self) { index in
+            contentView(index: index)
+                .onAppear {
+                    print("Lazy Item count: ", index + 1)
+                }
+        }
+    }
+    
+    @ViewBuilder
+    private func contentView(index: Int) -> some View {
+        let _ = { lazyViewCallCount += 1 }()
+        VStack {
+            Text("LazyText \(index)")
+            Circle()
+                .foregroundColor(.red)
+                .frame(width: 100, height: 100, alignment: .center)
+        }
+    }
+}
+
+struct UnLazyListExample: View {
+    private let conditions: [Bool] = Array(repeating: true, count: totalItemCount)
+    
+    var body: some View {
+        List(conditions.indices, id: \.self) { index in
+            conditionalView(if: conditions[index])
+                .onAppear {
+                    print("UnLazyItem count: ", index + 1)
+                }
+        }
+    }
+    
+    @ViewBuilder
+    private func conditionalView(if condition: Bool) -> some View {
+        let _ = { unLazyViewCallCount += 1 }()
+        if condition {
+            Text("condition: true")
+        } else {
+            EmptyView()
+        }
+    }
+}
+
+PlaygroundPage.current.setLiveView(ContentView())
+
+print("Type of ContentView.body: ", type(of: ContentView().body))
+print("Type of LazyListExample.body: ", type(of: LazyListExample().body))
+print("Type of UnLazyListExample.body: ", type(of: UnLazyListExample().body))
+print("Total item count in ListView", totalItemCount)
+print("_ConditionalView & OptionalView(unlazy) called \(unLazyViewCallCount) times.")
+print("lazy called \(lazyViewCallCount) times.")
+```
 
 #### Sources
 https://rensbr.eu/blog/swiftui-diffing/
