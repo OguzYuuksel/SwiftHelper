@@ -16,7 +16,7 @@ Composed views use primitive views in their body. Primitive views are the buildi
 (`ContentView`)
 
 
-
+#### [SwiftUI Diffing](https://rensbr.eu/blog/swiftui-diffing/)
 
 #### Lazyness 
 `List` is one of the lazy views in SwiftUI.
@@ -98,6 +98,3 @@ print("Total item count in ListView", totalItemCount)
 print("_ConditionalView & OptionalView(unlazy) called \(unLazyViewCallCount) times.")
 print("lazy called \(lazyViewCallCount) times.")
 ```
-
-#### Sources
-https://rensbr.eu/blog/swiftui-diffing/
